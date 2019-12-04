@@ -1,0 +1,16 @@
+[package]
+name = "rust_gfx"
+version = "0.1.0"
+authors = ["of9 <of9@st-andrews.ac.uk>"]
+edition = "2018"
+
+[lib]
+name = "gfxlib"
+path = "src/lib.rs"
+
+[[bin]]
+name = "gfxbin"
+path = "src/main.rs"
+
+[dependencies]
+num = "0.2"
