@@ -1,7 +1,9 @@
+
 extern crate num;
 use num::complex::Complex;
+use std::env::current_dir;
 
-use gfxlib::display::{Display, Color, Pixel, init_display, set_pixel, write_display};
+use gfxlib::display::{Color, Pixel, init_display, set_pixel, write_display};
 
 const MAX_ITER: i32 = 80;
 const RE_START: f64 = -2.0;

@@ -9,8 +9,8 @@ name = "gfxlib"
 path = "src/lib.rs"
 
 [[bin]]
-name = "gfxbin"
-path = "src/main.rs"
+name = "mandlebrot"
+path = "src/demos/mandlebrot/main.rs"
 
 [dependencies]
 num = "0.2"
