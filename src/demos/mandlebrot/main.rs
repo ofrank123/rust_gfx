@@ -1,17 +1,16 @@
-
 extern crate num;
 use num::complex::Complex;
-use std::env::current_dir;
 
-use gfxlib::display::{Color, Pixel, init_display, set_pixel, write_display};
+use gfxlib::draw::{set_pixel};
+use gfxlib::display::{Pixel, Color, init_display, write_display};
 
 const MAX_ITER: i32 = 80;
 const RE_START: f64 = -2.0;
 const RE_END: f64 = 1.0;
 const IM_START: f64 = -1.0;
 const IM_END: f64 = 1.0;
-const WIDTH: usize = 600 * 2;
-const HEIGHT: usize = 400 * 2;
+const WIDTH: i32 = 600 * 2;
+const HEIGHT: i32 = 400 * 2;
 
 fn main() {
     let mut disp = init_display(WIDTH, HEIGHT);

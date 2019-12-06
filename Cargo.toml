@@ -12,5 +12,9 @@ path = "src/lib.rs"
 name = "mandlebrot"
 path = "src/demos/mandlebrot/main.rs"
 
+[[bin]]
+name = "lines"
+path = "src/demos/lines/main.rs"
+
 [dependencies]
 num = "0.2"

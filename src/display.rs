@@ -1,14 +1,13 @@
 use std::fs;
-use std::cmp::{min, max};
 
-#[derive(Copy, Clone)]
+#[derive(Copy, Clone, Debug)]
 pub struct Pixel {
-    pub x: usize,
-    pub y: usize,
+    pub x: i32,
+    pub y: i32,
 }
 
 impl Pixel {
-    pub fn new(x: usize, y: usize) -> Pixel {
+    pub fn new(x: i32, y: i32) -> Pixel {
         Pixel {x,y}
     }
 }
@@ -27,15 +26,12 @@ impl Color {
 
     // Gets new RGB color from the given HSV color
     pub fn new_hsv(hue: f64, sat: f64, val: f64) -> Color {
-        let mut c = 0.;
-        let mut m = 0.;
-        let mut x = 0.;
-        let mut r = 0.;
-        let mut g = 0.;
-        let mut b = 0.;
-        c = val * sat;
-        x = c * (1.0 - (((hue / 60.) % 2.) - 1.).abs());
-        m = val - c;
+        let r;
+        let g;
+        let b;
+        let c = val * sat;
+        let x = c * (1.0 - (((hue / 60.) % 2.) - 1.).abs());
+        let m = val - c;
         if hue >= 0.0 && hue < 60.0 {
             r = c + m;
             g = x + m;
@@ -77,34 +73,20 @@ impl Color {
 }
 
 pub struct Display {
-    size_x: usize,
-    size_y: usize,
-    aspect: f64,
-    disp: Vec<Vec<Color>>,
+    pub size_x: i32,
+    pub size_y: i32,
+    pub aspect: f64,
+    pub disp: Vec<Vec<Color>>,
 }
 
-pub fn init_display(size_x: usize, size_y: usize) -> Display {
-    let mut disp = vec![vec![Color {
-        red: 255 as u8,
-        green: 255 as u8,
-        blue: 255 as u8,
-    }; size_x]; size_y];
+pub fn init_display(size_x: i32, size_y: i32, bg_color: Color) -> Display {
+    let disp = vec![vec![bg_color; size_x as usize]; size_y as usize];
     Display {
         size_x,
         size_y,
         aspect: (size_x as f64) / (size_y as f64),
         disp,
     }
-}
-
-pub fn set_pixel(pixel: Pixel, color: Color, display: &mut Display) {
-    if pixel.x >= display.size_x {
-        panic!("Pixel out of bounds");
-    }
-    if pixel.y >= display.size_y {
-        panic!("Pixel out of bounds");
-    }
-    display.disp[pixel.y][pixel.x] = color;
 }
 
 pub fn write_display(file_name: &str, display: &Display)  {
